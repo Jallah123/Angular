@@ -12,10 +12,6 @@ module.exports = function($scope, GamesFactory) {
 	};
 	$scope.games = GamesFactory.games;
 
-	$scope.compareDates = function(date){
-		return date > Date.now();
-	};
-
 	$scope.createGame = function() {
 		if($scope.game.$valid){
 			$scope.game.createdBy = $scope.user;
@@ -32,8 +28,9 @@ module.exports = function($scope, GamesFactory) {
 		var duplicateFound = false;
 		for(var i = 0; i < game.players.length; i++){
 			if(game.players[i] == $scope.user){
-				alert("duplicate");
 				duplicateFound = true;
+				alert("duplicate");
+				break;
 			}
 		}
 		if(!duplicateFound)
