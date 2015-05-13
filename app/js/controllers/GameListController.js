@@ -1,4 +1,5 @@
-module.exports = function($scope, GamesFactory) {
+module.exports = function($scope, GamesFactory, $cookies) {
+	alert($cookies.get('x-username'));
 	$scope.user = {
 		id: "mmaartijn", // Avans username
 		name: "string", // fullname
