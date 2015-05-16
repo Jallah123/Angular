@@ -1,7 +1,8 @@
 module.exports = function($routeProvider){
   $routeProvider.
   when('/authcallback', {
-    controller: 'AuthController'
+    controller: 'AuthController',
+    templateUrl: './js/templates/authcallback.html'
   }).
   when('/', {
     controller: 'GameListController',

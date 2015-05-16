@@ -1,17 +1,27 @@
-module.exports = function($scope, GamesFactory, $cookies) {
-	alert($cookies.get('x-username'));
-	$scope.user = {
-		id: "mmaartijn", // Avans username
-		name: "string", // fullname
-		email: "string", // avans e-mail
-		nickname: "string" // maybe filled later?
-	};
+module.exports = function($scope, GamesFactory, UserFactory) {
+	if(UserFactory.isLoggedIn()) {
+		$scope.user = UserFactory.getUser();
+	}
+
 	$scope.game = {
 		layout: '',
 		minPlayers: '',
 		maxPlayers: ''
 	};
+
+	$scope.$watch(function() {
+		return GamesFactory.games;
+	}, function(newVal, oldVal) {
+		if(typeof newVal !== 'undefined' ) {
+			$scope.games = GamesFactory.games;
+		}
+	});
+
 	$scope.games = GamesFactory.games;
+
+	$scope.isLoggedIn = function(){
+		UserFactory.isLoggedIn();
+	};
 
 	$scope.createGame = function() {
 		if($scope.game.$valid){
@@ -23,6 +33,10 @@ module.exports = function($scope, GamesFactory, $cookies) {
 		} else {
 			alert("not valid");
 		}
+	};
+
+	$scope.viewTiles = function(game) {
+		GamesFactory.getTilesByGameId(game);
 	};
 
 	$scope.addPlayerToGame = function(game) {

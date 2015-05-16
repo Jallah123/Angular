@@ -14,16 +14,19 @@
 			<input ng-model="game.maxPlayers" type="number" min="1" required="true" max="35" placeholder="maxPlayers"/>
 			<input type="submit" id="submit" value="Submit" />
 		</form>
-		<a href="http://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=http://localhost:8080/dist/index.html#authcallback">Login</a>
+		<div ng-show="isLoggedIn()"><a href="http://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=http://localhost:8080/dist/#/authcallback">Login</a></div>
+		<div ng-show="!isLoggedIn()"><h1>You are logged in as {{user.username}}</h1></div>
 		<li ng-repeat="game in games | orderBy:'+startedOn'">
 			<div class="border">
-				<span>{{game.layout}}</span>
-				<p>Creator: {{game.createdBy.id}}</p>
+				<span>{{game.gameTemplate.id}}</span>
+				<p>Creator: {{game.createdBy.id}} amount of tiles</p>
 				<p>Amount of players: {{ game.players.length }} </p>
+				<p>{{game.tiles.length}}</p>
 				<ul ng-if="game.state == 'open'" ng-repeat="player in game.players">
 					<li>{{player.id}}</li>
 				</ul>
 				<p>State: {{game.state}}</p>
+				<button ng-click="viewTiles(game)">View</button>
 				<button ng-click="addPlayerToGame(game)" ng-show="game.state == 'open'">Join</button>
 			</div>
 		</li>

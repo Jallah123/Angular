@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 			all: {
 				expand: true,
 				cwd: 'app/',
-				src: ['**/*.html', '**/*.css'],
+				src: ['**/*.html', '**/*.css', 'js/angular-modules/*.js'],
 				dest: 'dist/',
 			}
 		},
