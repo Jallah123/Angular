@@ -4,11 +4,12 @@ var app = angular.module('angular', ['ngRoute']);
 // Require Factories
 var gamesFactory = require('./services/GamesFactory.js');
 var userFactory = require('./services/UserFactory.js');
+var gameFactory = require('./services/GameFactory.js');
 
 // Require Controllers
 var gameListcontroller = require('./controllers/GameListController.js');
 var authController = require('./controllers/AuthController.js');
-var GameControler = require('./controllers/GameControler.js');
+var gameController = require('./controllers/GameController.js');
 
 // Require Routes
 var indexRoutes = require('./routes/index.js');
@@ -19,12 +20,12 @@ app.config(['$routeProvider', indexRoutes]);
 // Register Factories
 app.factory("GamesFactory", ["$http", gamesFactory]);
 app.factory("UserFactory", userFactory);
+app.factory("GameFactory", gameFactory);
 
 // Register Config
 app.factory('httpRequestInterceptor', ['UserFactory', function(UserFactory) {
     return {
         request: function($config) {
-        	// $config.headers = {'x-username':'si.dake@student.avans.nl', 'x-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.InNpLmRha2VAc3R1ZGVudC5hdmFucy5ubCI.vYVtlL5TEhNn948vFUUrHhULLeJcjL9HoX2dQQ2a-Fs', "Content-Type": "application/json"}
             $config.headers['x-username'] = "si.dake@student.avans.nl";
             $config.headers['x-token'] = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.InNpLmRha2VAc3R1ZGVudC5hdmFucy5ubCI.vYVtlL5TEhNn948vFUUrHhULLeJcjL9HoX2dQQ2a-Fs";
             $config.headers['Content-Type'] = "application/json";
@@ -39,4 +40,4 @@ app.config(function ($httpProvider) {
 // Register Controllers
 app.controller("GameListController", ["$scope", "GamesFactory", "UserFactory", gameListcontroller]);
 app.controller("AuthController", ["$location", "$routeParams", "UserFactory", authController]);
-app.controller("GameControler", ["$scope", "$routeParams", "GamesFactory", GameControler]);
+app.controller("GameController", ["$scope", "$routeParams", "GameFactory", "UserFactory", gameController]);
