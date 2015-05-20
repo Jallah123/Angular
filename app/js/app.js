@@ -38,6 +38,6 @@ app.config(function ($httpProvider) {
 });
 
 // Register Controllers
-app.controller("GameListController", ["$scope", "GamesFactory", "UserFactory", gameListcontroller]);
+app.controller("GameListController", ["$scope", "$location", "GamesFactory", "UserFactory", gameListcontroller]);
 app.controller("AuthController", ["$location", "$routeParams", "UserFactory", authController]);
 app.controller("GameController", ["$scope", "$routeParams", "GameFactory", "UserFactory", gameController]);

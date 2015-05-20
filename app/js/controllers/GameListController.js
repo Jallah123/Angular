@@ -1,4 +1,4 @@
-module.exports = function($scope, GamesFactory, UserFactory) {
+module.exports = function($scope, $location, GamesFactory, UserFactory) {
 	if(UserFactory.isLoggedIn()) {
 		$scope.user = UserFactory.getUser();
 	}
@@ -37,6 +37,7 @@ module.exports = function($scope, GamesFactory, UserFactory) {
 
 	$scope.viewTiles = function(game) {
 		GamesFactory.getTilesByGameId(game);
+		$location.path("/games/" + game._id);
 	};
 
 	$scope.addPlayerToGame = function(game) {
