@@ -28,8 +28,8 @@ module.exports = function($scope, GamesFactory, UserFactory) {
 			$scope.game.createdBy = $scope.user;
 			$scope.game.state = "open";
 			$scope.game.players = [];
-			GamesFactory.addGame($scope.game);
-			$scope.addPlayerToGame($scope.game);
+			var game = { "templateName": $scope.game.layout, "minPlayers": $scope.game.minPlayers, "maxPlayers": $scope.game.maxPlayers };
+			GamesFactory.addGame(game);
 		} else {
 			alert("not valid");
 		}

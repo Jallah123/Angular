@@ -15,8 +15,9 @@ app.factory("UserFactory", userFactory);
 app.factory('httpRequestInterceptor', ['UserFactory', function(UserFactory) {
     return {
         request: function($config) {
-            $config.headers['username'] = "test";
-            $config.headers['token'] = "token1";
+        	$config.headers = {'x-username':'si.dake@student.avans.nl', 'x-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.InNpLmRha2VAc3R1ZGVudC5hdmFucy5ubCI.vYVtlL5TEhNn948vFUUrHhULLeJcjL9HoX2dQQ2a-Fs', "Content-Type": "application/json"}
+            //$config.headers['username'] = UserFactory.getUser().username;
+            //$config.headers['token'] = UserFactory.getUser().token;
             return $config;
         }
     };

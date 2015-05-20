@@ -9,17 +9,23 @@ module.exports = function () {
 
         init: function(){
             this.user = JSON.parse(sessionStorage.getItem("user"));
+            if(this.user == null) {
+                this.user = {
+                    username: '',
+                    token: ''
+                };
+            }
         },
 
         saveUser: function(name, token) {
-            this.user.name = name;
+            this.user.username = name;
             this.user.token = token;
             sessionStorage.setItem("user", JSON.stringify(this.user));
             console.log("saved");
         },
 
         isLoggedIn: function(){
-            return !(this.user.name == "" && this.user.token == "");
+            return !(this.user.username == "" && this.user.token == "");
         },
 
         getUser: function() {

@@ -8,7 +8,7 @@ module.exports = function($http) {
 
 	factory.updateGames = function() {
 		var request = $http({
-			method: "get",
+			method: "GET",
 			url: this.baseUrl + "/Games"
 		});
 		factory.games = request.then(function(response) {
@@ -17,7 +17,7 @@ module.exports = function($http) {
 
 	factory.getTilesByGameId = function(game) {
 		var request = $http({
-			method: "get",
+			method: "GET",
 			url: this.baseUrl + "/Games/" + game.id + "/tiles"
 		});
 		game.tiles = request.then(function(response) {
@@ -30,7 +30,15 @@ module.exports = function($http) {
 	};
 
 	factory.addGame = function(game) {
-		factory.games.push(game);
+		var request = $http({
+			method: "POST",
+			url: this.baseUrl + "/Games",
+			data: JSON.stringify(game)
+		});
+		console.log(JSON.stringify(game));
+		/*request.then(function(response) {
+			factory.games.push(response.data);
+		}, this.handleError);*/
 	};
 
 	function handleError( response ) {
