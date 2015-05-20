@@ -30,15 +30,15 @@ module.exports = function($http) {
 	};
 
 	factory.addGame = function(game) {
+		console.log(JSON.stringify(game));
 		var request = $http({
 			method: "POST",
 			url: this.baseUrl + "/Games",
-			data: JSON.stringify(game)
+			data: "{\"templateName\": \"Ox\",\"minPlayers\": 2,\"maxPlayers\": 32}"
 		});
-		console.log(JSON.stringify(game));
-		/*request.then(function(response) {
+		request.then(function(response) {
 			factory.games.push(response.data);
-		}, this.handleError);*/
+		}, this.handleError);
 	};
 
 	function handleError( response ) {

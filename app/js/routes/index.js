@@ -8,6 +8,10 @@ module.exports = function($routeProvider){
     controller: 'GameListController',
     templateUrl: './js/templates/index.html'
   }).
+  .when('/games/:id', {
+    controller: 'GameController',
+    templateUrl: './js/templates/game.html'
+  }).
   otherwise({
     redirectTo: '/'
   });
