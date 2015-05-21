@@ -28,6 +28,13 @@ module.exports = function () {
             return !(service.user.username == "" || service.user.token == "");
         },
 
+        logOut: function(){
+            console.log("remove");
+            sessionStorage.removeItem("user");
+            service.user.username = "";
+            service.user.token = "";
+        },
+
         getUser: function() {
             return service.user;
         }

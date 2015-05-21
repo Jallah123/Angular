@@ -17,10 +17,22 @@ module.exports = function($scope, $location, GamesFactory, UserFactory) {
 		}
 	});
 
+	$scope.$watch(function() {
+		return UserFactory.getUser();
+	}, function(newVal, oldVal) {
+		if(typeof newVal !== 'undefined' ) {
+			$scope.user = UserFactory.getUser();
+		}
+	});
+
 	$scope.games = GamesFactory.games;
 
 	$scope.isLoggedIn = function(){
 		return UserFactory.isLoggedIn();
+	};
+
+	$scope.logOut = function(){
+		UserFactory.logOut();
 	};
 
 	$scope.createGame = function() {

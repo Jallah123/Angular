@@ -16,6 +16,7 @@
 		</form>
 		<div ng-show="!isLoggedIn()"><a href="http://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=http://localhost:8080/dist/%23/authcallback">Login</a></div>
 		<div ng-show="isLoggedIn()"><h1>You are logged in as {{user.username}}</h1></div>
+		<button ng-show="isLoggedIn()" ng-click="logOut()">Log out</button>
 		<li ng-repeat="game in games | orderBy:'+startedOn'">
 			<div class="border">
 				<span>{{game.gameTemplate.id}}</span>
