@@ -7,6 +7,7 @@ var userFactory = require('./services/UserFactory.js');
 var gameFactory = require('./services/GameFactory.js');
 
 // Require Controllers
+var userController = require('./controllers/UserController.js');
 var gameListcontroller = require('./controllers/GameListController.js');
 var authController = require('./controllers/AuthController.js');
 var gameController = require('./controllers/GameController.js');
@@ -38,6 +39,7 @@ app.config(function ($httpProvider) {
 });
 
 // Register Controllers
-app.controller("GameListController", ["$scope", "$location", "GamesFactory", "UserFactory", gameListcontroller]);
+app.controller("UserController", ["$scope", "UserFactory", userController]);
+app.controller("GameListController", ["$scope", "$location", "GamesFactory", gameListcontroller]);
 app.controller("AuthController", ["$location", "$routeParams", "UserFactory", authController]);
 app.controller("GameController", ["$scope", "$routeParams", "GameFactory", "UserFactory", gameController]);
