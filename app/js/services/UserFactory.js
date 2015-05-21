@@ -8,9 +8,9 @@ module.exports = function () {
         },
 
         init: function(){
-            this.user = JSON.parse(sessionStorage.getItem("user"));
-            if(this.user == null) {
-                this.user = {
+            service.user = JSON.parse(sessionStorage.getItem("user"));
+            if(service.user == null) {
+                service.user = {
                     username: '',
                     token: ''
                 };
@@ -18,18 +18,18 @@ module.exports = function () {
         },
 
         saveUser: function(name, token) {
-            this.user.username = name;
-            this.user.token = token;
-            sessionStorage.setItem("user", JSON.stringify(this.user));
+            service.user.username = name;
+            service.user.token = token;
+            sessionStorage.setItem("user", JSON.stringify(service.user));
             console.log("saved");
         },
 
         isLoggedIn: function(){
-            return !(this.user.username == "" && this.user.token == "");
+            return !(service.user.username == "" || service.user.token == "");
         },
 
         getUser: function() {
-            return this.user;
+            return service.user;
         }
     }
     service.init();

@@ -20,7 +20,7 @@ module.exports = function($scope, $location, GamesFactory, UserFactory) {
 	$scope.games = GamesFactory.games;
 
 	$scope.isLoggedIn = function(){
-		UserFactory.isLoggedIn();
+		return UserFactory.isLoggedIn();
 	};
 
 	$scope.createGame = function() {
