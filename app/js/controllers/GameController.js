@@ -14,7 +14,7 @@ module.exports = function($scope, $routeParams, GameFactory, UserFactory) {
 	$scope.join = function() {
 		var duplicate = false;
 		for(var i = 0; i < GameFactory.game.players.length; i++) {
-			if(GameFactory.game.players[i]._id == UserFactory.getUser().username) {
+			if(GameFactory.game.players[i]._id == UserFactory.getUser()._id) {
 				duplicate = true;
 			}
 		}

@@ -26,7 +26,15 @@ module.exports = function($http) {
 	};
 
 	factory.addPlayerToGame = function(game, user){
-		game.players.push(user);
+		console.log(JSON.stringify(user));
+		console.log(game);
+		var request = $http({
+			method: "POST",
+			url: this.baseUrl + "/Games/" + game.id + "/Players"
+		});
+		request.then(function(response) {
+			game.players.push(user);
+		}, this.handleError);
 	};
 
 	factory.addGame = function(game) {

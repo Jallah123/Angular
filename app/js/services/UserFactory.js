@@ -3,7 +3,8 @@ module.exports = function () {
     var service = {
 
         user: {
-            username: '',
+            id: '',
+            _id: '',
             token: ''
         },
 
@@ -11,27 +12,28 @@ module.exports = function () {
             service.user = JSON.parse(sessionStorage.getItem("user"));
             if(service.user == null) {
                 service.user = {
-                    username: '',
+                    id: '',
                     token: ''
                 };
             }
         },
 
         saveUser: function(name, token) {
-            service.user.username = name;
+            service.user.id = name;
             service.user.token = token;
+            service.user._id = name;
             sessionStorage.setItem("user", JSON.stringify(service.user));
             console.log("saved");
         },
 
         isLoggedIn: function(){
-            return !(service.user.username == "" || service.user.token == "");
+            return !(service.user.id == "" || service.user.token == "");
         },
 
         logOut: function(){
             console.log("remove");
             sessionStorage.removeItem("user");
-            service.user.username = "";
+            service.user.id = "";
             service.user.token = "";
         },
 

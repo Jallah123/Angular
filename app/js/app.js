@@ -6,6 +6,9 @@ var gamesFactory = require('./services/GamesFactory.js');
 var userFactory = require('./services/UserFactory.js');
 var gameFactory = require('./services/GameFactory.js');
 
+// Require Directives
+var tileDirective = require('./directives/tile.js');
+
 // Require Controllers
 var userController = require('./controllers/UserController.js');
 var gameListcontroller = require('./controllers/GameListController.js');
@@ -18,6 +21,9 @@ var indexRoutes = require('./routes/index.js');
 // Create your app
 app.config(['$routeProvider', indexRoutes]);
 
+// Register Directives
+app.directive('tile', tileDirective);
+
 // Register Factories
 app.factory("GamesFactory", ["$http", gamesFactory]);
 app.factory("UserFactory", userFactory);
@@ -25,17 +31,17 @@ app.factory("GameFactory", gameFactory);
 
 // Register Config
 app.factory('httpRequestInterceptor', ['UserFactory', function(UserFactory) {
-    return {
-        request: function($config) {
-            $config.headers['x-username'] = "si.dake@student.avans.nl";
-            $config.headers['x-token'] = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.InNpLmRha2VAc3R1ZGVudC5hdmFucy5ubCI.vYVtlL5TEhNn948vFUUrHhULLeJcjL9HoX2dQQ2a-Fs";
-            $config.headers['Content-Type'] = "application/json";
-            return $config;
-        }
-    };
+	return {
+		request: function($config) {
+			$config.headers['x-username'] = "si.dake@student.avans.nl";
+			$config.headers['x-token'] = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.InNpLmRha2VAc3R1ZGVudC5hdmFucy5ubCI.vYVtlL5TEhNn948vFUUrHhULLeJcjL9HoX2dQQ2a-Fs";
+			$config.headers['Content-Type'] = "application/json";
+			return $config;
+		}
+	};
 }]);
 app.config(function ($httpProvider) {
-    $httpProvider.interceptors.push('httpRequestInterceptor');
+	$httpProvider.interceptors.push('httpRequestInterceptor');
 });
 
 // Register Controllers
