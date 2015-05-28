@@ -1,14 +1,17 @@
-module.exports = function($routeProvider){
-  $routeProvider.
-  when('/authcallback', {
+module.exports = function($stateprovider){
+  $stateprovider.
+  state('authentication', {
+    url : '/authcallback',
     controller: 'AuthController',
     templateUrl: './js/templates/authcallback.html'
   }).
-  when('/', {
+  state('home', {
+    url : '/',
     controller: 'GameListController',
     templateUrl: './js/templates/index.html'
   }).
-  when('/games/:id', {
+  state('game', {
+    url : '/games/:id',
     controller: 'GameController',
     templateUrl: './js/templates/game.html'
   }).

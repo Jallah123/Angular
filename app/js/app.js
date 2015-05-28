@@ -1,5 +1,6 @@
 require('angular/angular');
-var app = angular.module('angular', ['ngRoute']);
+require('angular-ui-router/build/angular-ui-router');
+var app = angular.module('angular', ['ui.router']);
 
 // Require Factories
 var gamesFactory = require('./services/GamesFactory.js');
@@ -19,7 +20,7 @@ var gameController = require('./controllers/GameController.js');
 var indexRoutes = require('./routes/index.js');
 
 // Create your app
-app.config(['$routeProvider', indexRoutes]);
+app.config(['$stateprovider', indexRoutes]);
 
 // Register Directives
 app.directive('tile', tileDirective);

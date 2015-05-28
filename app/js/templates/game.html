@@ -10,8 +10,8 @@ Gameid:
 	<li ng-repeat="player in game.players">{{player._id}}</li>
 </ul>
 
-<div ng-repeat="tile in game.tiles">
-	<tile tile="tile"></tile>
+<div style="position: relative; width: 800px; height: 700px; background-color: #FF00FF">
+	<tile ng-repeat="tile in game.tiles" tile="tile"></tile>
 </div>
 	<button ng-click="join()">join</button>
 </div>
