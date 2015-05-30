@@ -19,8 +19,8 @@ var gameController = require('./controllers/GameController.js');
 // Require Routes
 var indexRoutes = require('./routes/index.js');
 
-// Create your app
-app.config(['$stateprovider', indexRoutes]);
+// add routing
+app.config(['$stateProvider', '$urlRouterProvider', indexRoutes]);
 
 // Register Directives
 app.directive('tile', tileDirective);
@@ -47,6 +47,6 @@ app.config(function ($httpProvider) {
 
 // Register Controllers
 app.controller("UserController", ["$scope", "UserFactory", userController]);
-app.controller("GameListController", ["$scope", "$location", "GamesFactory", gameListcontroller]);
-app.controller("AuthController", ["$location", "$routeParams", "UserFactory", authController]);
-app.controller("GameController", ["$scope", "$routeParams", "GameFactory", "UserFactory", gameController]);
+app.controller("GameListController", ["$scope", "$state", "GamesFactory", gameListcontroller]);
+app.controller("AuthController", ["$state", "$stateParams", "$location", "UserFactory", authController]);
+app.controller("GameController", ["$scope", "$stateParams", "GameFactory", "UserFactory", gameController]);

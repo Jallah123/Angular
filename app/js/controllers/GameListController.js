@@ -1,4 +1,4 @@
-module.exports = function($scope, $location, GamesFactory) {
+module.exports = function($scope, $state, GamesFactory) {
 	$scope.game = {
 		layout: '',
 		minPlayers: '',
@@ -29,7 +29,8 @@ module.exports = function($scope, $location, GamesFactory) {
 
 	$scope.viewTiles = function(game) {
 		GamesFactory.getTilesByGameId(game);
-		$location.path("/games/" + game._id);
+		$state.go('game', {"id": game._id});
+ 		event.preventDefault(); 
 	};
 
 	$scope.addPlayerToGame = function(game) {

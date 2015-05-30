@@ -1,5 +1,5 @@
-module.exports = function($scope, $routeParams, GameFactory, UserFactory) {
-	GameFactory.setGame($routeParams.id);
+module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
+	GameFactory.setGame($stateParams.id);
 	$scope.game = GameFactory.game;
 
 	$scope.$watch(function() {
