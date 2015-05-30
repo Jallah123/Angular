@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 			all: {
 				expand: true,
 				cwd: 'app/',
-				src: ['**/*.html', '**/*.css', 'js/angular-modules/*.js'],
+				src: ['**/*.html', '**/*.png','**/*.css', 'js/angular-modules/*.js'],
 				dest: 'dist/',
 			}
 		},
@@ -30,6 +30,10 @@ module.exports = function(grunt) {
 			},
 			css: {
 				files: 'app/**/*.css',
+				tasks: 'copy'
+			},
+			png: {
+				files: 'app/**/*.png',
 				tasks: 'copy'
 			}
 		}

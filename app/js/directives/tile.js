@@ -8,5 +8,5 @@ module.exports = function() {
 		link: function(scope, element, attrs){
 
 		}
-	}
+	};
 };

@@ -16,5 +16,12 @@ module.exports = function($stateProvider, $urlRouterProvider){
     url : '/games/:id',
     controller: 'GameController',
     templateUrl: './js/templates/game.html'
-  });
+  }).state('game.board', {
+    url: '/board',
+    templateUrl: './js/templates/gameBoard.html'
+    })
+  .state('game.players', {
+    url: '/players',
+    templateUrl: './js/templates/gamePlayers.html'
+    });
 };

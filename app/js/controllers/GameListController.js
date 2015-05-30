@@ -29,7 +29,7 @@ module.exports = function($scope, $state, GamesFactory) {
 
 	$scope.viewTiles = function(game) {
 		GamesFactory.getTilesByGameId(game);
-		$state.go('game', {"id": game._id});
+		$state.go('game.board', {"id": game._id});
  		event.preventDefault(); 
 	};
 

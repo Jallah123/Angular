@@ -7,7 +7,24 @@
 </head>
 
 <body ng-controller="UserController">
-
+<div>
+	<div class="sprite-tile1"></div>
+	<div class="sprite-tile4"></div>
+	<div class="sprite-tile5"></div>
+	<div class="sprite-tile6"></div>
+	<div class="sprite-tile7"></div>
+	<div class="sprite-tile8"></div>
+	<div class="sprite-tile9"></div>
+	<div class="sprite-tile10"></div>
+	<div class="sprite-tile11"></div>
+	<div class="sprite-tile12"></div>
+	<div class="sprite-tile13"></div>
+	<div class="sprite-tile14"></div>
+	<div class="sprite-tile15"></div>
+	<div class="sprite-tile16"></div>
+</div>
+	<div class="sprite-tile2"></div>
+	<div class="sprite-tile3"></div>
 	<div ng-show="!isLoggedIn()"><a href="http://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=http://localhost:8080/dist/%23/authcallback">Login</a></div>
 	<div ng-show="isLoggedIn()"><h1>You are logged in as {{ user.id }}</h1></div>
 	<button ng-show="isLoggedIn()" ng-click="logOut()">Log out</button>

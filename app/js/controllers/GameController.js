@@ -7,9 +7,12 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 	}, function(newVal, oldVal) {
 		if(typeof newVal !== 'undefined' ) {
 			$scope.game = GameFactory.game;
-			console.log(GameFactory.game);
 		}
 	});
+
+	$scope.selectTile = function(tile){
+		console.log(tile);
+	};
 
 	$scope.join = function() {
 		var duplicate = false;
