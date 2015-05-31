@@ -18,6 +18,7 @@ module.exports = function($stateProvider, $urlRouterProvider){
     templateUrl: './js/templates/game.html'
   }).state('game.board', {
     url: '/board',
+    controller: 'GameController',
     templateUrl: './js/templates/gameBoard.html'
     })
   .state('game.players', {
