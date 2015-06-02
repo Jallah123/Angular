@@ -10,7 +10,7 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 		}
 	});
 
-	$scope.selectTile2 = function(){
+	$scope.selectTile = function(){
 		console.log("hallo");
 	};
 
