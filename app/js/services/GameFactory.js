@@ -3,7 +3,8 @@ module.exports = function($http) {
 	var factory = {};
 
 	factory.game = {};
-
+	factory.selectedTile = {};
+	
 	factory.baseUrl = "http://mahjongmayhem.herokuapp.com/Games/";
 
 	factory.setGame = function(id) {

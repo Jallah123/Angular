@@ -12,6 +12,22 @@ module.exports = function($stateProvider, $urlRouterProvider){
     controller: 'GameListController',
     templateUrl: './js/templates/index.html'
   })
+  .state('home.all', {
+    url : 'all',
+    templateUrl: './js/templates/indexAll.html'
+  })
+  .state('home.active', {
+    url : 'active',
+    templateUrl: './js/templates/indexActive.html'
+  })
+  .state('home.open', {
+    url : 'open',
+    templateUrl: './js/templates/indexOpen.html'
+  })
+  .state('home.played', {
+    url : 'played',
+    templateUrl: './js/templates/indexPlayed.html'
+  })
   .state('game', {
     url : '/games/:id',
     controller: 'GameController',

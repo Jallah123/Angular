@@ -1,0 +1,33 @@
+<div>
+	<ul>
+		<form name="game" class="border" ng-submit="createGame()">
+			<select ng-model="game.layout">
+				<option>snake</option>
+				<option>shanghai</option>
+				<option>ox</option>
+				<option>ram</option>
+				<option>dragon</option>
+				<option>rooster</option>
+				<option>monkey</option>
+			</select> 
+			<input ng-model="game.minPlayers" type="number" min="1" required="true" max="35" placeholder="minPlayers"/>
+			<input ng-model="game.maxPlayers" type="number" min="1" required="true" max="35" placeholder="maxPlayers"/>
+			<input type="submit" id="submit" value="Submit" />
+		</form>
+		
+		<li ng-repeat="game in games | orderBy:'+startedOn' | filter: {state :'open' }">
+			<div class="border">
+				<span>{{game.gameTemplate.id}}</span>
+				<p>Creator: {{game.createdBy.id}} amount of tiles</p>
+				<p>Amount of players: {{ game.players.length }} </p>
+				<p>{{game.tiles.length}}</p>
+				<ul ng-if="game.state == 'open'" ng-repeat="player in game.players">
+					<li>{{player.id}}</li>
+				</ul>
+				<p>State: {{game.state}}</p>
+				<button ng-click="viewTiles(game)">View</button>
+				<button ng-click="addPlayerToGame(game)" ng-show="game.state == 'open'">Join</button>
+			</div>
+		</li>
+	</ul>
+</div>
