@@ -1,5 +1,4 @@
-<div>
-	<ul>
+
 		<form name="game" class="border" ng-submit="createGame()">
 			<select ng-model="game.layout">
 				<option>snake</option>
@@ -15,19 +14,41 @@
 			<input type="submit" id="submit" value="Submit" />
 		</form>
 		
-		<li ng-repeat="game in games | orderBy:'+startedOn'">
-			<div class="border">
-				<span>{{game.gameTemplate.id}}</span>
-				<p>Creator: {{game.createdBy.id}} amount of tiles</p>
-				<p>Amount of players: {{ game.players.length }} </p>
-				<p>{{game.tiles.length}}</p>
-				<ul ng-if="game.state == 'open'" ng-repeat="player in game.players">
-					<li>{{player.id}}</li>
-				</ul>
-				<p>State: {{game.state}}</p>
-				<button ng-click="viewTiles(game)">View</button>
-				<button ng-click="addPlayerToGame(game)" ng-show="game.state == 'open'">Join</button>
+<!-- 		<form role="form">
+			<div class="form-group">
+				<label for="minPlayers">Minimum Players</label>
+				<input type="text" class="form-control" id="minPlayers">
 			</div>
-		</li>
-	</ul>
-</div>
+			<div class="form-group">
+				<label for="maxPlayers">Maximum Players:</label>
+				<input type="text" class="form-control" id="maxPlayers">
+			</div>
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form> -->
+
+		<div class="panel panel-default">
+
+			<!-- Table -->
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Template</th>
+						<th>Creator</th>
+						<th>Amount of Players</th>
+						<th>State</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="game in games | orderBy:'+startedOn'">
+						<td>{{game.gameTemplate.id}}</td>
+						<td>{{game.createdBy.name}}</td>
+						<td>{{game.players.length}}</td>
+						<td>{{game.state}}</td>
+						<td><button ng-click="viewTiles(game)">View</button></td>
+						<td><button ng-click="addPlayerToGame(game)" ng-show="game.state == 'open'">Join</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>		

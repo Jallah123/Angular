@@ -10,10 +10,6 @@ module.exports = function($stateProvider, $urlRouterProvider){
   .state('home', {
     url : '/',
     controller: 'GameListController',
-    templateUrl: './js/templates/index.html'
-  })
-  .state('home.all', {
-    url : 'all',
     templateUrl: './js/templates/indexAll.html'
   })
   .state('home.active', {
