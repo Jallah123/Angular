@@ -3,5 +3,5 @@
 	@extend .spritesheet;
 	height: $height;
 	width: 40px; 
-	background-position: 0px (($height*$y)*($i*9));
+	background-position: 0px -1*(($height*$y)+($i*9*$height));
 }

@@ -9,6 +9,6 @@
 
 $tiles: bamboo, character, circle;
 
-@for $i from 1 through length($tiles){
-	@include sprite(#{nth($tiles, ($i))}, $i);
+@for $i from 0 through length($tiles) - 1{
+	@include sprite(#{nth($tiles, ($i + 1))}, $i);
 }
