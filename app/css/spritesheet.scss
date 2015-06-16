@@ -1,0 +1,14 @@
+.spritesheet {
+	background-image: url('../img/spritesheet.png');
+	background-repeat: no-repeat;
+	display: block;
+}
+
+@import 'tile-mixin';
+@import 'spritesheet-mixin';
+
+$tiles: bamboo, character, circle;
+
+@for $i from 1 through length($tiles){
+	@include sprite(#{nth($tiles, ($i))}, $i);
+}

@@ -1,54 +1,33 @@
+<ul class="nav nav-tabs">
+	<li role="presentation" class="active"><a ui-sref="home.all">All</a></li>
+	<li role="presentation"><a ui-sref="home.active">Active</a></li>
+	<li role="presentation"><a ui-sref="home.open">Open</a></li>
+	<li role="presentation"><a ui-sref="home.finished">Finished</a></li>
+</ul>
 
-		<form name="game" class="border" ng-submit="createGame()">
-			<select ng-model="game.layout">
-				<option>snake</option>
-				<option>shanghai</option>
-				<option>ox</option>
-				<option>ram</option>
-				<option>dragon</option>
-				<option>rooster</option>
-				<option>monkey</option>
-			</select> 
-			<input ng-model="game.minPlayers" type="number" min="1" required="true" max="35" placeholder="minPlayers"/>
-			<input ng-model="game.maxPlayers" type="number" min="1" required="true" max="35" placeholder="maxPlayers"/>
-			<input type="submit" id="submit" value="Submit" />
-		</form>
-		
-<!-- 		<form role="form">
-			<div class="form-group">
-				<label for="minPlayers">Minimum Players</label>
-				<input type="text" class="form-control" id="minPlayers">
-			</div>
-			<div class="form-group">
-				<label for="maxPlayers">Maximum Players:</label>
-				<input type="text" class="form-control" id="maxPlayers">
-			</div>
-			<button type="submit" class="btn btn-default">Submit</button>
-		</form> -->
+<div class="panel panel-default">
 
-		<div class="panel panel-default">
-
-			<!-- Table -->
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Template</th>
-						<th>Creator</th>
-						<th>Amount of Players</th>
-						<th>State</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="game in games | orderBy:'+startedOn'">
-						<td>{{game.gameTemplate.id}}</td>
-						<td>{{game.createdBy.name}}</td>
-						<td>{{game.players.length}}</td>
-						<td>{{game.state}}</td>
-						<td><button ng-click="viewTiles(game)">View</button></td>
-						<td><button ng-click="addPlayerToGame(game)" ng-show="game.state == 'open'">Join</button></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>		
+	<!-- Table -->
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Template</th>
+				<th>Creator</th>
+				<th>Amount of Players</th>
+				<th>State</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="game in games | orderBy:'+startedOn'">
+				<td>{{game.gameTemplate.id}}</td>
+				<td>{{game.createdBy.name}}</td>
+				<td>{{game.players.length}}</td>
+				<td>{{game.state}}</td>
+				<td><button ng-click="viewTiles(game)">View</button></td>
+				<td><button ng-click="addPlayerToGame(game)" ng-show="game.state == 'open'">Join</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div>		

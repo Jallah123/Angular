@@ -1,0 +1,7 @@
+@mixin tile($y, $i) {
+	$height : 55.01432664756447px;
+	@extend .spritesheet;
+	height: $height;
+	width: 40px; 
+	background-position: 0px (($height*$y)*($i*9));
+}

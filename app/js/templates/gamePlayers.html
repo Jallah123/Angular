@@ -1,4 +1,20 @@
-<div>Joined Players:</div> 
-<ul>
-	<li ng-repeat="player in game.players">{{player._id}}</li>
+<ul class="nav nav-tabs">
+	<li role="presentation"><a ui-sref="home.all">Home</a></li>
+	<li role="presentation"><a ui-sref="game.board">Board</a></li>
+	<li role="presentation" class="active"><a ui-sref="game.players">Players</a></li>
 </ul>
+<div class="panel-heading">Joined players</div>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Player</th>
+			<th>Matched tiles</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="player in game.players">
+			<td>{{player._id}}</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>

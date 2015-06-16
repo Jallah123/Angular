@@ -1,0 +1,21 @@
+<form class="form-inline" role="form" name="game" ng-submit="createGame()">
+	<div class="form-group">
+		<select ng-model="game.layout" class="form-control">
+			<option>Snake</option>
+			<option>Shanghai</option>
+			<option>Ox</option>
+			<option>Ram</option>
+			<option>Dragon</option>
+			<option>Rooster</option>
+			<option>Monkey</option>
+		</select> 
+	</div>
+	<div class="form-group">
+		<input type="number" class="form-control" ng-model="game.minPlayers" min="1" required="true" max="35" placeholder="Min Players">
+	</div>
+	<div class="form-group">
+		<input ng-model="game.maxPlayers" type="number" min="1" required="true" max="35" class="form-control"placeholder="Max Players">
+	</div>
+	<button type="submit" class="btn btn-default" id="submit" value="Submit">Submit</button>
+</form>
+<div class="ui-view"></div>

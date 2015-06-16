@@ -1,5 +1,6 @@
 module.exports = function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.when('/', '/home/all');
 
   $stateProvider
   .state('authentication', {
@@ -8,8 +9,12 @@ module.exports = function($stateProvider, $urlRouterProvider){
     templateUrl: './js/templates/authcallback.html'
   })
   .state('home', {
-    url : '/',
+    url : '/home/',
+    abstract: true,
     controller: 'GameListController',
+    templateUrl: './js/templates/index.html'
+  }).state('home.all', {
+    url: 'all',
     templateUrl: './js/templates/indexAll.html'
   })
   .state('home.active', {
@@ -20,7 +25,7 @@ module.exports = function($stateProvider, $urlRouterProvider){
     url : 'open',
     templateUrl: './js/templates/indexOpen.html'
   })
-  .state('home.played', {
+  .state('home.finished', {
     url : 'played',
     templateUrl: './js/templates/indexPlayed.html'
   })
@@ -30,7 +35,6 @@ module.exports = function($stateProvider, $urlRouterProvider){
     templateUrl: './js/templates/game.html'
   }).state('game.board', {
     url: '/board',
-    controller: 'GameController',
     templateUrl: './js/templates/gameBoard.html'
     })
   .state('game.players', {

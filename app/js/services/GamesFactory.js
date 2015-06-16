@@ -42,7 +42,7 @@ module.exports = function($http) {
 		var request = $http({
 			method: "POST",
 			url: this.baseUrl + "/Games",
-			data: "{\"templateName\": \"Ox\",\"minPlayers\": 2,\"maxPlayers\": 32}"
+			data: "{\"templateName\": \"" + game.templateName + "\",\"minPlayers\":" + game.minPlayers + ",\"maxPlayers\":" + game.maxPlayers + "}"
 		});
 		request.then(function(response) {
 			factory.games.push(response.data);
