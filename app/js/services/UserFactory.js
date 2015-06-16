@@ -35,6 +35,7 @@ module.exports = function () {
             sessionStorage.removeItem("user");
             service.user.id = "";
             service.user.token = "";
+            service.user._id = "";
         },
 
         getUser: function() {

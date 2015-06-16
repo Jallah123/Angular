@@ -34,8 +34,9 @@ app.factory("GameFactory", gameFactory);
 app.factory('httpRequestInterceptor', ['UserFactory', function(UserFactory) {
 	return {
 		request: function($config) {
-			$config.headers['x-username'] = "si.dake@student.avans.nl";
-			$config.headers['x-token'] = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.InNpLmRha2VAc3R1ZGVudC5hdmFucy5ubCI.vYVtlL5TEhNn948vFUUrHhULLeJcjL9HoX2dQQ2a-Fs";
+			$config.headers['x-username'] = UserFactory.getUser().id;
+			console.log(UserFactory.getUser());
+			$config.headers['x-token'] = UserFactory.getUser().token;
 			$config.headers['Content-Type'] = "application/json";
 			return $config;
 		}
