@@ -4,11 +4,13 @@
 	display: block;
 }
 
+@import 'stringToInt';
 @import 'tile-mixin';
 @import 'spritesheet-mixin';
 
 $tiles: bamboo, character, circle;
+$amounts: 8, 8, 8;
 
 @for $i from 0 through length($tiles) - 1{
-	@include sprite(#{nth($tiles, ($i + 1))}, $i);
+	@include sprite(#{nth($tiles, ($i + 1))}, $i, #{nth($amounts, ($i + 1))});
 }

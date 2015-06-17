@@ -35,7 +35,6 @@ app.factory('httpRequestInterceptor', ['UserFactory', function(UserFactory) {
 	return {
 		request: function($config) {
 			$config.headers['x-username'] = UserFactory.getUser().id;
-			console.log(UserFactory.getUser());
 			$config.headers['x-token'] = UserFactory.getUser().token;
 			$config.headers['Content-Type'] = "application/json";
 			return $config;
