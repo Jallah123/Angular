@@ -54,10 +54,10 @@ module.exports = function($http) {
 		var request = $http({
 			method: "POST",
 			url: this.baseUrl + factory.game._id + "/Tiles/matches",
-			data: "{\"tile1Id\": \"" + tile1._id + "\",\"tile2Id\":" + tile2._id + "}"
+			data: "{ \"tile1Id\": \"" + tile1._id + "\", \"tile2Id\":\"" + tile2._id + "\"}"
 		});
 		request.then(function(response) {
-			alert("did move");
+			location.reload();
 		}, this.handleError);
 	};
 

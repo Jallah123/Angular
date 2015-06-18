@@ -14,7 +14,11 @@
 	<tbody>
 		<tr ng-repeat="player in game.players">
 			<td>{{player._id}}</td>
-			<td></td>
+			<td>
+				<span ng-repeat="tile in game.tiles" ng-if="tile.match">
+					{{tile.match.foundBy}}
+				</span>
+			</td>
 		</tr>
 	</tbody>
 </table>

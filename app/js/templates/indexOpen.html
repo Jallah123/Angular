@@ -17,6 +17,7 @@
 				<th>State</th>
 				<th></th>
 				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,6 +28,7 @@
 				<td>{{game.state}}</td>
 				<td><button ng-click="viewTiles(game)">View</button></td>
 				<td><button ng-click="addPlayerToGame(game)" ng-show="game.state == 'open'">Join</button></td>
+				<td><button ng-click="startGame(game)" ng-show="game.createdBy._id == user._id && game.state == 'open'">Start</button>
 			</tr>
 		</tbody>
 	</table>

@@ -11,6 +11,10 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 
 	$scope.selectTile = function(tile){
 		console.log(tile);
+		if(!isPlayerJoined()){
+			alert("You haven't joined this game");
+			return;
+		}
 		if(!isFree(tile)){
 			alert("tile not free");
 			return;
@@ -25,9 +29,11 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 			}
 			console.log("second tile");
 			if(isMatch($scope.game.selectedTile, tile)){
-				deselectTile();
 				alert("match");
+				console.log($scope.game.selectedTile);
+				console.log(tile);
 				GameFactory.doMove($scope.game.selectedTile, tile);
+				deselectTile();
 			}else{
 				deselectTile();
 				alert("no match");
@@ -47,6 +53,15 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 		} else {
 			GameFactory.join();
 		}
+	}
+	isPlayerJoined = function(){
+		var joined = false;
+		for(var i = 0; i < $scope.game.players.length;i++){
+			if($scope.game.players[i]._id == UserFactory.getUser()._id) {
+				joined = true;
+			}
+		}
+		return joined;
 	}
 
 	deselectTile = function () {
@@ -70,6 +85,7 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 		var hasLeftTile = false;
 		var hasTopTile = false;
 		var hasBottomTile = false;
+		
 		for(var i=0;i<$scope.game.tiles.length;i++){
 			if($scope.game.tiles[i].zPos == tile.zPos){
 				if($scope.game.tiles[i].xPos == tile.xPos+2 && $scope.game.tiles[i].yPos == tile.yPos){

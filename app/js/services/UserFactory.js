@@ -23,6 +23,7 @@ module.exports = function () {
             service.user.token = token;
             service.user._id = name;
             sessionStorage.setItem("user", JSON.stringify(service.user));
+            console.log(name, token);
         },
 
         isLoggedIn: function(){
