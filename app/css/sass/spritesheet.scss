@@ -1,5 +1,5 @@
 .spritesheet {
-	background-image: url('../img/spritesheet.png');
+	background-image: url($spriteUrl);
 	background-repeat: no-repeat;
 	display: block;
 }
@@ -14,3 +14,8 @@ $amounts: 8, 8, 8;
 @for $i from 0 through length($tiles) - 1{
 	@include sprite(#{nth($tiles, ($i + 1))}, $i, #{nth($amounts, ($i + 1))});
 }
+
+@include sprite(dragon, 3, "2");
+@include sprite(flower, 4, "3");
+@include sprite(season, 5, "3");
+@include sprite(wind, 6, "3");

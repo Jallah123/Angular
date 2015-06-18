@@ -45,4 +45,8 @@ module.exports = function($scope, $state, GamesFactory) {
 		if(!duplicateFound)
 			GamesFactory.addPlayerToGame(game, $scope.user);
 	};
+
+	$scope.startGame = function(game){
+		GamesFactory.startGame(game);
+	};
 };

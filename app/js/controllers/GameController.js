@@ -94,7 +94,7 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 			console.log("overlaying tile");
 			return false;
 		}
-		return !hasTopTile && (!hasLeftTile || !hasRightTile);
+		return (!hasTopTile || !hasBottomTile) && (!hasLeftTile || !hasRightTile);
 	}
 
 	hasOverlayingTile = function(tile){

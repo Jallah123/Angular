@@ -17,17 +17,19 @@
 				<th>State</th>
 				<th></th>
 				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="game in games | orderBy:'+startedOn'">
 				<td>{{game.gameTemplate.id}}</td>
 				<td>{{game.createdBy.name}}</td>
-				<td>{{game.players.length}}</td>
+				<td>{{game.players.length}} / {{game.maxPlayers}}</td>
 				<td>{{game.state}}</td>
 				<td><button ng-click="viewTiles(game)">View</button></td>
 				<td><button ng-click="addPlayerToGame(game)" ng-show="game.state == 'open'">Join</button></td>
-			</tr>
-		</tbody>
-	</table>
-</div>		
+				<td><button ng-click="startGame(game)" ng-show="game.createdBy._id == Userfactory.getUser()._id && game.state == 'open'">Start</button>
+				</tr>
+			</tbody>
+		</table>
+	</div>		

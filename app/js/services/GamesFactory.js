@@ -37,6 +37,16 @@ module.exports = function($http) {
 		}, this.handleError);
 	};
 
+	factory.startGame = function(game){
+		var request = $http({
+			method: "POST",
+			url: this.baseUrl + "/Games/" + game.id + "/Start",
+			data: "{}"
+		});
+		request.then(function(response) {
+		}, this.handleError);
+	};
+
 	factory.addGame = function(game) {
 		console.log(JSON.stringify(game));
 		var request = $http({
