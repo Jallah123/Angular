@@ -6,16 +6,31 @@
 
 @import 'stringToInt';
 @import 'tile-mixin';
-@import 'spritesheet-mixin';
+@import 'sprite-mixin';
+@import 'specific-tile-mixin';
 
 $tiles: bamboo, character, circle;
 $amounts: 8, 8, 8;
 
 @for $i from 0 through length($tiles) - 1{
-	@include sprite(#{nth($tiles, ($i + 1))}, $i, #{nth($amounts, ($i + 1))});
+	@include sprite(#{nth($tiles, ($i + 1))}, $i, #{nth($amounts, ($i + 1))}, 9);
 }
 
-@include sprite(dragon, 3, "2");
-@include sprite(flower, 4, "3");
-@include sprite(season, 5, "3");
-@include sprite(wind, 6, "3");
+@include specificTile("dragon-green", 27);
+@include specificTile("dragon-red", 28);
+@include specificTile("dragon-white", 29);
+
+@include specificTile("flower-bamboo", 30);
+@include specificTile("flower-Chrysantememum", 31);
+@include specificTile("flower-orchid", 32);
+@include specificTile("flower-Plum", 33);
+
+@include specificTile("season-autumn", 34);
+@include specificTile("season-spring", 35);
+@include specificTile("season-summer", 36);
+@include specificTile("season-winter", 37);
+
+@include specificTile("wind-east", 38);
+@include specificTile("wind-north", 39);
+@include specificTile("wind-south", 40);
+@include specificTile("wind-west", 41);

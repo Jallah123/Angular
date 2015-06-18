@@ -1,7 +1,0 @@
-@mixin sprite($name, $i, $through) {
-	@for $ii from 0 through number($through){
-		.#{$name - ($ii+1)}{
-			@include tile($ii, $i);	
-		}
-	}
-}
