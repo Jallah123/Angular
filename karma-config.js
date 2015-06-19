@@ -4,10 +4,10 @@ var istanbul = require('browserify-istanbul');
 
 module.exports = function (config) {
   config.set({
-    basePath: '',
+    basePath: '/dist',
     frameworks: ['mocha', 'chai', 'sinon', 'browserify'],
     files: [
-    'app/**/*.js',
+            'app/**/*.js',
             // Angular-mocks moet na app.js geladen worden omdat daar angular in zit
             'node_modules/angular-mocks/angular-mocks.js',
             'test/*.spec.js', 

@@ -7,12 +7,12 @@ describe("Example Directives", function() {
 		We vragen hier de module op die we in de app.js gecreëerd hebben.
 		Angular-mocks regelt voor ons dat alles geïnitialiseerd wordt.
 	*/
-	beforeEach(module('myApp'));
+	beforeEach(module('angular'));
 
 	// load the templates
 	// We kunnen deze template laden doordat we gebruik maken van ng-html2js in de karma config.
 	// Hierdoor kunnen we de html testen die er uitkomt.
-  	beforeEach(module('templates/personTemplate.html'));
+  	beforeEach(module('templates/tileTemplate.html'));
 
 	/*
 		We kunnen verchillende dingen van de app opvragen.
@@ -23,12 +23,12 @@ describe("Example Directives", function() {
 		We kunnen underscores voor en achter de providers zetten, angular weet dan nog steeds welke providers het zijn
 	*/
 	beforeEach(inject(function(_tileDirective_, _$compile_, _$rootScope_){
-		personDirective = _tileDirective_;
+		tileDirective = _tileDirective_;
 		$compile = _$compile_;
 		$rootScope = _$rootScope_;
 	}));
 
-	it('should render the person directive', function() { 
+	it('should render the tile directive', function() { 
 		// Maak een nieuwe scope die de properties bevat die we willen testen
 		var $scope = $rootScope.$new();
 		$scope.item = { firstName: 'Martijn', lastName: 'Schuurmans' };
