@@ -4,7 +4,7 @@ var istanbul = require('browserify-istanbul');
 
 module.exports = function (config) {
   config.set({
-    basePath: '/dist',
+    basePath: '',
     frameworks: ['mocha', 'chai', 'sinon', 'browserify'],
     files: [
             'app/**/*.js',
@@ -50,7 +50,7 @@ module.exports = function (config) {
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
         logLevel: config.LOG_INFO,
 
-        browsers: ['Chrome']
+        browsers: ['Firefox']
 
       });
 };

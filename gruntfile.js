@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 				src: 'app/js/app.js',
 				dest: 'dist/js/app.js',
 				options: {
-					external: ['angular'],
+					external: ['angular', 'jQuery'],
 					debug: true,
 					browserifyOptions: { debug: true }
 				}

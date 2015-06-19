@@ -12,7 +12,7 @@ describe("Example Directives", function() {
 	// load the templates
 	// We kunnen deze template laden doordat we gebruik maken van ng-html2js in de karma config.
 	// Hierdoor kunnen we de html testen die er uitkomt.
-  	beforeEach(module('templates/tileTemplate.html'));
+  	beforeEach(module('tileTemplate.html'));
 
 	/*
 		We kunnen verchillende dingen van de app opvragen.
@@ -31,22 +31,19 @@ describe("Example Directives", function() {
 	it('should render the tile directive', function() { 
 		// Maak een nieuwe scope die de properties bevat die we willen testen
 		var $scope = $rootScope.$new();
-		$scope.item = { firstName: 'Martijn', lastName: 'Schuurmans' };
-		$scope.onClick = function() {
-			console.log('OnClick was called');
+		$scope.tile = {
+			xPos: 20,
+			yPos: 30,
+			zPos: 2
 		};
 
 		// We maken onze string (die we gebruiken in templates om directives aan te duiden)
 		// en compileren deze zodat de directive gecreëerd wordt.
-		var element = $compile('<tile tile="item" on-select="onClick"></tile>')($scope);
+		var element = $compile('<tile tile="tile" on-select="onClick"></tile>')($scope);
 		$scope.$digest(); // The scope moet gedigest worden zodat alles aangeroepen wordt.
-
-		// Vergelijk dit met JQuery, we kunnen zoeken in een element naar een <button>
-		// We voeren dan de methode 'click' uit.
-		element.find('button').triggerHandler('click');
 
 		// We kunnen de html opvragen en vergelijken met wat we verwachten.
 		// In dit geval verwachten we dat de voor- en achternaam achter elkaar in een h3 staan.
-		expect(element.html()).to.have.string('<h3 class="ng-binding">Martijn Schuurmans</h3>');
+		expect(element.html()).to.have.string('<span style="position: absolute; z-index:2;left:410px; top:815px;" class="-">\n</span> ');
 	});
 });
