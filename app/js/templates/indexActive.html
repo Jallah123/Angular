@@ -26,7 +26,7 @@
 				<td>{{game.players.length}}</td>
 				<td>{{game.state}}</td>
 				<td><button ng-click="viewTiles(game)">View</button></td>
-				<td><button ng-click="addPlayerToGame(game)" ng-show="game.state == 'open'">Join</button></td>
+				<td><button ng-click="addPlayerToGame(game)" ng-show="game | gameState : 'open'">Join</button></td>
 			</tr>
 		</tbody>
 	</table>

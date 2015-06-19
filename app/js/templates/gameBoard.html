@@ -4,5 +4,5 @@
 	<li role="presentation"><a ui-sref="game.players">Players</a></li>
 </ul>
 <div style="position: relative; width: 700px; height: 700px; background-color:#D8D8D8;">
-	<tile ng-repeat="tile in game.tiles" ng-show="tile.match == undefined" tile="tile" ng-click="selectTile(tile)"></tile>
+	<tile ng-repeat="tile in game.tiles | filter: {match : undefined}" id="tile-{{tile._id}}" ng-show="tile.match == undefined" tile="tile" ng-click="selectTile(tile)"></tile>
 </div>

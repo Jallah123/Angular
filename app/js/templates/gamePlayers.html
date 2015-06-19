@@ -13,10 +13,10 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="player in game.players">
-			<td>{{player._id}}</td>
-			<td>
-				<span ng-repeat="tile in game.tiles" ng-if="tile.match">
-					{{tile.match.foundBy}}
+			<td width="25%">{{player._id}}</td>
+			<td width="75%">
+				<span style="display: inline-block;" ng-repeat="tile in game.tiles" ng-if="tile.match">
+					<span class={{tile.tile.suit}}-{{tile.tile.name}}></span> 
 				</span>
 			</td>
 		</tr>

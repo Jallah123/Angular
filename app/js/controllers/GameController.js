@@ -22,6 +22,7 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 		if(typeof $scope.game.selectedTile === 'undefined'){
 			console.log("first tile");
 			$scope.game.selectedTile = tile;
+			$('#tile-' + tile._id + ' > span').toggleClass('selected');
 		}else{
 			if($scope.game.selectedTile == tile){
 				deselectTile();
@@ -29,10 +30,11 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 			}
 			console.log("second tile");
 			if(isMatch($scope.game.selectedTile, tile)){
-				alert("match");
-				console.log($scope.game.selectedTile);
-				console.log(tile);
 				GameFactory.doMove($scope.game.selectedTile, tile);
+				$('#tile-' + tile._id).remove();
+				$('#tile-' + $scope.game.selectedTile._id).remove();
+				$scope.game.selectedTile.match = {"foundBy":UserFactory.getUser()._id};
+				tile.match = {"foundBy":UserFactory.getUser()._id};
 				deselectTile();
 			}else{
 				deselectTile();
@@ -65,6 +67,7 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 	}
 
 	deselectTile = function () {
+		$('#tile-' + $scope.game.selectedTile._id + ' > span').toggleClass('selected');
 		$scope.game.selectedTile = undefined;
 	}
 	
@@ -87,20 +90,27 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 		var hasBottomTile = false;
 		
 		for(var i=0;i<$scope.game.tiles.length;i++){
+			if($scope.game.tiles[i].match != undefined){
+				continue;
+			}
+			var x = $scope.game.tiles[i].xPos;
+			var y = $scope.game.tiles[i].yPos;
+			var inXRange = (x == tile.xPos || x == tile.xPos+1 || x == tile.xPos-1);
+			var inYRange = (y == tile.yPos || y == tile.yPos+1 || y == tile.yPos-1);
 			if($scope.game.tiles[i].zPos == tile.zPos){
-				if($scope.game.tiles[i].xPos == tile.xPos+2 && $scope.game.tiles[i].yPos == tile.yPos){
+				if($scope.game.tiles[i].xPos == tile.xPos+2 && inYRange){
 					hasRightTile = true;
 					console.log("has right tile");
 				}
-				if($scope.game.tiles[i].xPos == tile.xPos-2 && $scope.game.tiles[i].yPos == tile.yPos){
+				if($scope.game.tiles[i].xPos == tile.xPos-2 && inYRange){
 					hasLeftTile = true;
 					console.log("has left tile");
 				}
-				if($scope.game.tiles[i].yPos == tile.yPos-2  && $scope.game.tiles[i].xPos == tile.xPos){
+				if($scope.game.tiles[i].yPos == tile.yPos-2  && inXRange){
 					hasTopTile = true;
 					console.log("has top tile");
 				}
-				if($scope.game.tiles[i].yPos == tile.yPos+2  && $scope.game.tiles[i].xPos == tile.xPos){
+				if($scope.game.tiles[i].yPos == tile.yPos+2  && inXRange){
 					hasBottomTile = true;
 					console.log("has bottom tile");
 				}
@@ -115,6 +125,9 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 
 	hasOverlayingTile = function(tile){
 		for(var i=0;i<$scope.game.tiles.length;i++){
+			if($scope.game.tiles[i].match != undefined){
+				continue;
+			}
 			var x = $scope.game.tiles[i].xPos;
 			var y = $scope.game.tiles[i].yPos;
 			var z = $scope.game.tiles[i].zPos;

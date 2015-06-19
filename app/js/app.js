@@ -19,6 +19,9 @@ var gameController = require('./controllers/GameController.js');
 // Require Routes
 var indexRoutes = require('./routes/index.js');
 
+// Require Filters
+var gameFilter = require('./filters/gameFilter.js');
+
 // add routing
 app.config(['$stateProvider', '$urlRouterProvider', indexRoutes]);
 
@@ -29,6 +32,9 @@ app.directive('tile', tileDirective);
 app.factory("GamesFactory", ["$http", gamesFactory]);
 app.factory("UserFactory", userFactory);
 app.factory("GameFactory", gameFactory);
+
+// Add Filters
+app.filter("gameState", gameFilter);
 
 // Register Config
 app.factory('httpRequestInterceptor', ['UserFactory', function(UserFactory) {

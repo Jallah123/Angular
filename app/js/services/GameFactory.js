@@ -57,7 +57,6 @@ module.exports = function($http) {
 			data: "{ \"tile1Id\": \"" + tile1._id + "\", \"tile2Id\":\"" + tile2._id + "\"}"
 		});
 		request.then(function(response) {
-			location.reload();
 		}, this.handleError);
 	};
 
