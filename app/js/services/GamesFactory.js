@@ -9,7 +9,7 @@ module.exports = function($http) {
 	factory.updateGames = function() {
 		var request = $http({
 			method: "GET",
-			url: this.baseUrl + "/Games"
+			url: this.baseUrl + "/Games?pageSize=9999"
 		});
 		factory.games = request.then(function(response) {
 			factory.games = response.data }, this.handleError);
@@ -44,6 +44,7 @@ module.exports = function($http) {
 			data: "{}"
 		});
 		request.then(function(response) {
+			game.state = 'playing';
 		}, this.handleError);
 	};
 

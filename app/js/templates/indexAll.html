@@ -21,14 +21,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="game in games | orderBy:'+startedOn'">
+			<tr ng-repeat="game in games | orderBy:'-startedOn'">
 				<td>{{game.gameTemplate.id}}</td>
 				<td>{{game.createdBy.name}}</td>
 				<td>{{game.players.length}} / {{game.maxPlayers}}</td>
 				<td>{{game.state}}</td>
 				<td><button ng-click="viewTiles(game)">View</button></td>
 				<td><button ng-click="addPlayerToGame(game)" ng-show="game | gameState : 'open'">Join</button></td>
-				<td><button ng-click="startGame(game)" ng-show="game | gameState: 'open' && game.createdBy._id == user._id">Start</button>
+				<td><button ng-click="startGame(game)" ng-hide="game.state != 'open' || game.createdBy._id != user._id">Start</button>
 				</tr>
 			</tbody>
 		</table>

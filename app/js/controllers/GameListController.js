@@ -22,6 +22,12 @@ module.exports = function($scope, $state, GamesFactory) {
 			$scope.game.players = [];
 			var game = { "templateName": $scope.game.layout, "minPlayers": $scope.game.minPlayers, "maxPlayers": $scope.game.maxPlayers };
 			GamesFactory.addGame(game);
+			$scope.game = {
+				layout: '',
+				minPlayers: '',
+				maxPlayers: ''
+			};
+			alert("Game added.");
 		} else {
 			alert("not valid");
 		}
@@ -30,7 +36,7 @@ module.exports = function($scope, $state, GamesFactory) {
 	$scope.viewTiles = function(game) {
 		GamesFactory.getTilesByGameId(game);
 		$state.go('game.board', {"id": game._id});
- 		event.preventDefault(); 
+		event.preventDefault(); 
 	};
 
 	$scope.addPlayerToGame = function(game) {
@@ -42,8 +48,15 @@ module.exports = function($scope, $state, GamesFactory) {
 				break;
 			}
 		}
-		if(!duplicateFound)
-			GamesFactory.addPlayerToGame(game, $scope.user);
+		
+
+		if(game.players.length < game.maxPlayers){
+			if(!duplicateFound){
+				GamesFactory.addPlayerToGame(game, $scope.user);
+			} 
+		} else {
+			alert("Game already full.");
+		}
 	};
 
 	$scope.startGame = function(game){

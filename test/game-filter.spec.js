@@ -19,7 +19,7 @@ describe("Game Filters", function() {
 		gameFilter = $filter('gameState');
 	}));
 
-	it('should return open', function(done){
+	it('should return true for open', function(done){
 		// Filters zijn het gemakkelijkst te testen omdat ze jouw zelf gemaakte functie returnen.
 		var result = gameFilter({ state: "open" }, "open");
 		expect(result).to.equal(true);
@@ -27,7 +27,7 @@ describe("Game Filters", function() {
 		done();
 	});
 
-	it('should not equal finished to open', function(done){
+	it('should not equal true finished to open', function(done){
 		// Filters zijn het gemakkelijkst te testen omdat ze jouw zelf gemaakte functie returnen.
 		var result = gameFilter({ state: "finished" }, "open");
 		expect(result).to.equal(false);
@@ -35,12 +35,11 @@ describe("Game Filters", function() {
 		done();
 	});
 
-	it('should equal finished to finished', function(done){
+	it('should return true finished to finished', function(done){
 		// Filters zijn het gemakkelijkst te testen omdat ze jouw zelf gemaakte functie returnen.
 		var result = gameFilter({ state: "finished" }, "finished");
 		expect(result).to.equal(true);
 
 		done();
 	});
-
 });

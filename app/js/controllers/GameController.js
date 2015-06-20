@@ -43,19 +43,22 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 		};
 	}
 
-	$scope.join = function() {
-		var duplicate = false;
-		for(var i = 0; i < GameFactory.game.players.length; i++) {
-			if(GameFactory.game.players[i]._id == UserFactory.getUser()._id) {
-				duplicate = true;
-			}
+	$scope.changeColor = function(color){
+		console.log("changeColor");
+		console.log(color);
+
+		var href = "";
+		switch(color.toLowerCase()){
+			case'yellow': href = "css/app-yellow.css";
+			break;
+			case'white': href = "css/app.css";
+			break;
 		}
-		if(duplicate) {
-			alert("You already joined.");
-		} else {
-			GameFactory.join();
+		if(href != ""){
+			document.getElementById('stylesheet').href = href;
 		}
 	}
+
 	isPlayerJoined = function(){
 		var joined = false;
 		for(var i = 0; i < $scope.game.players.length;i++){
@@ -73,7 +76,7 @@ module.exports = function($scope, $stateParams, GameFactory, UserFactory) {
 	
 	isMatch = function (tile1, tile2) {
 		if(tile1.tile.suit == tile2.tile.suit){
-			if(tile1.tile.matchesWHoleSuit){
+			if(tile1.tile.matchesWholeSuit){
 				return true;
 			}
 			if(tile1.tile.name == tile2.tile.name){
