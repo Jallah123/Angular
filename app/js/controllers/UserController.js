@@ -1,5 +1,5 @@
 module.exports = function($scope, UserFactory) {
-
+	var self = this;
 	$scope.$watch(function() {
 		return UserFactory.getUser();
 	}, function(newVal, oldVal) {
@@ -14,15 +14,15 @@ module.exports = function($scope, UserFactory) {
 		$scope.user = UserFactory.getUser();
 	};
 
-	$scope.isLoggedIn = function(){
+	self.isLoggedIn = function(){
 		return UserFactory.isLoggedIn();
 	};
 
-	$scope.logOut = function(){
+	self.logOut = function(){
 		UserFactory.logOut();
 	};
 
-	$scope.getUser = function(){
+	self.getUser = function(){
 		return UserFactory.getUser();
 	};
 };

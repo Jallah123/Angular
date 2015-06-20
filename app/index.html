@@ -7,7 +7,7 @@
 	<script src="js/app.js"></script>
 </head>
 <div ng-app="angular"></div>
-<body ng-controller="UserController">
+<body ng-controller="UserController as userCtrl">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -18,14 +18,14 @@
 					<li class="active"><a ui-sref="home.all">Games</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li ng-show="!isLoggedIn()">
+					<li ng-show="!userCtrl.isLoggedIn()">
 						<a href="http://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=http://localhost:8080/dist/%23/authcallback">Login</a>
 					</li>
-					<li ng-show="isLoggedIn()">
+					<li ng-show="userCtrl.isLoggedIn()">
 						<a>You are logged in as {{ user.id }}</a>
 					</li>
-					<li ng-show="isLoggedIn()">
-						<a href="" ng-click="logOut()">Log out</a>
+					<li ng-show="userCtrl.isLoggedIn()">
+						<a href="" ng-click="userCtrl.logOut()">Log out</a>
 					</li>
 				</ul>
 			</div>
