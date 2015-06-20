@@ -1,51 +1,40 @@
 <html lang="en" ng-app="angular">
 <head>
-	<link rel="stylesheet" href="css/app.css"/>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.css"/>
+	<link rel="stylesheet" href="css/app.css" id="stylesheet"/>
 	<script src="js/app.js"></script>
-	<script src="js/angular-modules/angular-route.js"></script>
-	<script src="js/angular-modules/angular-cookies.js"></script>
 </head>
-
-<body>
-
-	<div ng-view>
+<div ng-app="angular"></div>
+<body ng-controller="UserController as userCtrl">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" ui-sref="home.all">Mahjong Mayham</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a ui-sref="home.all">Games</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li ng-show="!userCtrl.isLoggedIn()">
+						<a href="http://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=http://localhost:8080/dist/%23/authcallback">Login</a>
+					</li>
+					<li ng-show="userCtrl.isLoggedIn()">
+						<a>You are logged in as {{ user.id }}</a>
+					</li>
+					<li ng-show="userCtrl.isLoggedIn()">
+						<a href="" ng-click="userCtrl.logOut()">Log out</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<div ui-view>
 
 	</div>
-
 </body>
 
 </html>
-
-
-<!-- 
-<body ng-controller="GameListController">
-	<ul>
-		<form name="game" class="border" ng-submit="createGame()">
-			<select ng-model="game.layout">
-				<option>snake</option>
-				<option>shanghai</option>
-				<option>ox</option>
-				<option>ram</option>
-				<option>dragon</option>
-				<option>rooster</option>
-				<option>monkey</option>
-			</select>
-			<input ng-model="game.minPlayers" type="number" min="1" required="true" max="35" placeholder="minPlayers"/>
-			<input ng-model="game.maxPlayers" type="number" min="1" required="true" max="35" placeholder="maxPlayers"/>
-			<input type="submit" id="submit" value="Submit" />
-		</form>
-		<a href="http://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=http://localhost:8080/authcallback">Login</a>
-		<li ng-repeat="game in games | orderBy:'+startedOn'">
-			<div class="border">
-				<span>{{game.layout}}</span>
-				<p>Creator: {{game.createdBy.id}}</p>
-				<p>Amount of players: {{ game.players.length }} </p>
-				<ul ng-if="game.state == 'open'" ng-repeat="player in game.players">
-					<li>{{player.id}}</li>
-				</ul>
-				<p>State: {{game.state}}</p>
-				<button ng-click="addPlayerToGame(game)" ng-show="game.state == 'open'">Join</button>
-			</div>
-		</li>
-	</ul>
-</body> -->

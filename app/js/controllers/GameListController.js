@@ -1,8 +1,4 @@
-module.exports = function($scope, $location, GamesFactory, UserFactory) {
-	if(UserFactory.isLoggedIn()) {
-		$scope.user = UserFactory.getUser();
-	}
-
+module.exports = function($scope, $state, GamesFactory) {
 	$scope.game = {
 		layout: '',
 		minPlayers: '',
@@ -19,10 +15,6 @@ module.exports = function($scope, $location, GamesFactory, UserFactory) {
 
 	$scope.games = GamesFactory.games;
 
-	$scope.isLoggedIn = function(){
-		UserFactory.isLoggedIn();
-	};
-
 	$scope.createGame = function() {
 		if($scope.game.$valid){
 			$scope.game.createdBy = $scope.user;
@@ -30,6 +22,12 @@ module.exports = function($scope, $location, GamesFactory, UserFactory) {
 			$scope.game.players = [];
 			var game = { "templateName": $scope.game.layout, "minPlayers": $scope.game.minPlayers, "maxPlayers": $scope.game.maxPlayers };
 			GamesFactory.addGame(game);
+			$scope.game = {
+				layout: '',
+				minPlayers: '',
+				maxPlayers: ''
+			};
+			alert("Game added.");
 		} else {
 			alert("not valid");
 		}
@@ -37,7 +35,8 @@ module.exports = function($scope, $location, GamesFactory, UserFactory) {
 
 	$scope.viewTiles = function(game) {
 		GamesFactory.getTilesByGameId(game);
-		$location.path("/games/" + game._id);
+		$state.go('game.board', {"id": game._id});
+		event.preventDefault(); 
 	};
 
 	$scope.addPlayerToGame = function(game) {
@@ -49,7 +48,18 @@ module.exports = function($scope, $location, GamesFactory, UserFactory) {
 				break;
 			}
 		}
-		if(!duplicateFound)
-			GamesFactory.addPlayerToGame(game, $scope.user);
+		
+
+		if(game.players.length < game.maxPlayers){
+			if(!duplicateFound){
+				GamesFactory.addPlayerToGame(game, $scope.user);
+			} 
+		} else {
+			alert("Game already full.");
+		}
+	};
+
+	$scope.startGame = function(game){
+		GamesFactory.startGame(game);
 	};
 };

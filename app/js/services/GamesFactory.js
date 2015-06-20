@@ -9,7 +9,7 @@ module.exports = function($http) {
 	factory.updateGames = function() {
 		var request = $http({
 			method: "GET",
-			url: this.baseUrl + "/Games"
+			url: this.baseUrl + "/Games?pageSize=9999"
 		});
 		factory.games = request.then(function(response) {
 			factory.games = response.data }, this.handleError);
@@ -26,7 +26,26 @@ module.exports = function($http) {
 	};
 
 	factory.addPlayerToGame = function(game, user){
-		game.players.push(user);
+		console.log(JSON.stringify(user));
+		console.log(game);
+		var request = $http({
+			method: "POST",
+			url: this.baseUrl + "/Games/" + game.id + "/Players"
+		});
+		request.then(function(response) {
+			game.players.push(user);
+		}, this.handleError);
+	};
+
+	factory.startGame = function(game){
+		var request = $http({
+			method: "POST",
+			url: this.baseUrl + "/Games/" + game.id + "/Start",
+			data: "{}"
+		});
+		request.then(function(response) {
+			game.state = 'playing';
+		}, this.handleError);
 	};
 
 	factory.addGame = function(game) {
@@ -34,7 +53,7 @@ module.exports = function($http) {
 		var request = $http({
 			method: "POST",
 			url: this.baseUrl + "/Games",
-			data: "{\"templateName\": \"Ox\",\"minPlayers\": 2,\"maxPlayers\": 32}"
+			data: "{\"templateName\": \"" + game.templateName + "\",\"minPlayers\":" + game.minPlayers + ",\"maxPlayers\":" + game.maxPlayers + "}"
 		});
 		request.then(function(response) {
 			factory.games.push(response.data);

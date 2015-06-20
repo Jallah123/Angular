@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 				src: 'app/js/app.js',
 				dest: 'dist/js/app.js',
 				options: {
-					external: ['angular'],
+					external: ['angular', 'jQuery'],
 					debug: true,
 					browserifyOptions: { debug: true }
 				}
@@ -15,8 +15,18 @@ module.exports = function(grunt) {
 			all: {
 				expand: true,
 				cwd: 'app/',
-				src: ['**/*.html', '**/*.css', 'js/angular-modules/*.js'],
+				src: ['**/*.html', '**/*.png','**/*.css', 'js/angular-modules/*.js'],
 				dest: 'dist/',
+			}
+		},
+		sass: {
+			dist: {
+				options: {
+					style: 'expanded'
+				},
+				files: {
+					'dist/css/app.css' : 'app/css/sass/app.scss'
+				}
 			}
 		},
 		watch: {
@@ -29,7 +39,11 @@ module.exports = function(grunt) {
 				tasks: 'copy'
 			},
 			css: {
-				files: 'app/**/*.css',
+				files: 'app/**/*.scss',
+				tasks: 'sass'
+			},
+			png: {
+				files: 'app/**/*.png',
 				tasks: 'copy'
 			}
 		}
@@ -38,7 +52,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-browserify');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-
-	grunt.registerTask('default', ['browserify', 'copy']);
+	grunt.loadNpmTasks('grunt-contrib-sass');
+	
+	grunt.registerTask('default', ['browserify', 'copy', 'sass']);
 };
 

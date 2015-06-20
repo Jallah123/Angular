@@ -3,33 +3,42 @@ module.exports = function () {
     var service = {
 
         user: {
-            username: '',
+            id: '',
+            _id: '',
             token: ''
         },
 
         init: function(){
-            this.user = JSON.parse(sessionStorage.getItem("user"));
-            if(this.user == null) {
-                this.user = {
-                    username: '',
+            service.user = JSON.parse(sessionStorage.getItem("user"));
+            if(service.user == null) {
+                service.user = {
+                    id: '',
                     token: ''
                 };
             }
         },
 
         saveUser: function(name, token) {
-            this.user.username = name;
-            this.user.token = token;
-            sessionStorage.setItem("user", JSON.stringify(this.user));
-            console.log("saved");
+            service.user.id = name;
+            service.user.token = token;
+            service.user._id = name;
+            sessionStorage.setItem("user", JSON.stringify(service.user));
+            console.log(name, token);
         },
 
         isLoggedIn: function(){
-            return !(this.user.username == "" && this.user.token == "");
+            return !(service.user.id == "" || service.user.token == "");
+        },
+
+        logOut: function(){
+            sessionStorage.removeItem("user");
+            service.user.id = "";
+            service.user.token = "";
+            service.user._id = "";
         },
 
         getUser: function() {
-            return this.user;
+            return service.user;
         }
     }
     service.init();

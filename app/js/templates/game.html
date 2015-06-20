@@ -1,28 +1,3 @@
 <div>
-<h1>
-Gameid: 
-{{game._id}}
-</h1>
-
-<span>Amount of tiles: {{game.tiles.length}}</span>
-<h3>Players</h3>
-<ul>
-	<li ng-repeat="player in game.players">{{player.name}}</li>
-</ul>
-<form>
-	<div>
-		<p>Tile 1</p>
-		<input name="x1" type="number" min="0" max="200" />
-		<input name="y1" type="number" min="0" max="200" />
-		<input name="z1" type="number" min="0" max="200" />
-	</div>
-	<div>
-		<p>Tile 2</p>
-		<input name="x2" type="number" min="0" max="200" />
-		<input name="y2" type="number" min="0" max="200" />
-		<input name="z2" type="number" min="0" max="200" />
-	</div>
-	<button>match</button>
-	<button ng-click="join()">join</button>
-</form>
+<div class="ui-view"/>
 </div>

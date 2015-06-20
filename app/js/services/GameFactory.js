@@ -3,7 +3,8 @@ module.exports = function($http) {
 	var factory = {};
 
 	factory.game = {};
-
+	factory.selectedTile = {};
+	
 	factory.baseUrl = "http://mahjongmayhem.herokuapp.com/Games/";
 
 	factory.setGame = function(id) {
@@ -49,8 +50,14 @@ module.exports = function($http) {
 		}, this.handleError);
 	};
 
-	factory.doMove = function(){
-
+	factory.doMove = function(tile1, tile2){
+		var request = $http({
+			method: "POST",
+			url: this.baseUrl + factory.game._id + "/Tiles/matches",
+			data: "{ \"tile1Id\": \"" + tile1._id + "\", \"tile2Id\":\"" + tile2._id + "\"}"
+		});
+		request.then(function(response) {
+		}, this.handleError);
 	};
 
 	function handleError( response ) {

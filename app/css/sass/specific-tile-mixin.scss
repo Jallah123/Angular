@@ -1,0 +1,9 @@
+@mixin specificTile($name, $place) {
+	.#{$name}{
+		$height : 55.01432664756447px;
+		@extend .spritesheet;
+		height: $height;
+		width: 40px; 
+		background-position: 0px -1*$height*$place;
+	}
+}
